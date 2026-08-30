@@ -7,6 +7,7 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 vim.pack.add {
+  'https://github.com/mfussenegger/nvim-dap-python',
   'https://github.com/mfussenegger/nvim-dap',
   'https://github.com/rcarriga/nvim-dap-ui',
   'https://github.com/nvim-neotest/nvim-nio',
@@ -93,3 +94,4 @@ require('dap-go').setup {
     detached = vim.fn.has 'win32' == 0,
   },
 }
+require("dap-python").setup("uv")
