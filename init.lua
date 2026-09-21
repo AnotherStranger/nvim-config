@@ -122,6 +122,7 @@ do
   --  Schedule the setting after `UiEnter` because it can increase startup-time.
   --  Remove this option if you want your OS clipboard to remain independent.
   --  See `:help 'clipboard'`
+  vim.g.clipboard = 'osc52'
   vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
   -- Enable break indent
@@ -696,11 +697,42 @@ do
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
-    ruff={},
-    pylsp={},
-    ty={},
-    openscad_lsp={},
-    
+    pylsp = {
+      cmd = { 'uv', 'tool', 'run', '--from=python-lsp-server', 'pylsp' },
+      settings = {
+        pylsp = {
+          plugins = {
+            ruff = {
+              enabled = true, -- Enable the plugin
+              formatEnabled = true, -- Enable formatting using ruffs formatter
+            },
+            rope_autoimport = {
+              enabled = true,
+            },
+            pylsp_rope = {
+              enabled = true,
+              rename = {
+                enabled = true,
+              },
+            },
+            jedi_rename = { enabled = false },
+            rope_rename = { enabled = false },
+          },
+        },
+      },
+    },
+    ty = {
+      settings = {
+        ty = {
+          disableLanguageServices = true,
+        },
+      },
+    },
+    gh_actions_ls = {},
+    openscad_lsp = {},
+    helm_ls = {},
+    yamlls = {},
+
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
     --    https://github.com/pmizio/typescript-tools.nvim
