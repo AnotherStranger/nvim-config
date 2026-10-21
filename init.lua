@@ -699,6 +699,24 @@ do
     -- rust_analyzer = {},
     pylsp = {
       cmd = { 'uv', 'tool', 'run', '--from=python-lsp-server', 'pylsp' },
+      root_dir = function(bufnr, on_dir)
+        local project_root = vim.fs.root(bufnr, {
+          'pyproject.toml',
+          'setup.py',
+          'setup.cfg',
+          '.git',
+        })
+        if not project_root then return end
+
+        local source_root = project_root .. '/src'
+        local filename = vim.api.nvim_buf_get_name(bufnr)
+
+        if filename:sub(1, #source_root + 1) == source_root .. '/' then
+          on_dir(source_root)
+        else
+          on_dir(project_root)
+        end
+      end,
       settings = {
         pylsp = {
           plugins = {
