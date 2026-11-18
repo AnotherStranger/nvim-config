@@ -697,6 +697,8 @@ do
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
+    texlab = {},
+    ltex_plus = {},
     pylsp = {
       cmd = { 'uv', 'tool', 'run', '--from=python-lsp-server', 'pylsp' },
       root_dir = function(bufnr, on_dir)
