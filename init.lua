@@ -699,6 +699,7 @@ do
     -- rust_analyzer = {},
     texlab = {},
     ltex_plus = {},
+    nil_ls = {},
     pylsp = {
       cmd = { 'uv', 'tool', 'run', '--from=python-lsp-server', 'pylsp' },
       root_dir = function(bufnr, on_dir)
